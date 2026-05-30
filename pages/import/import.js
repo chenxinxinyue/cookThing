@@ -4,7 +4,6 @@ Page({
   data: {
     csvText: '',
     parsedItems: [],
-    selectedIds: [],
     importResult: '',
     parseLog: ''
   },
@@ -106,6 +105,7 @@ Page({
         price: price,
         note: noteIdx !== -1 && noteIdx < cols.length ? (cols[noteIdx] || '').trim() : '',
         dateAdded: storage.todayStr(),
+        selected: false,
         _raw: cols.join(', ')
       })
     }
@@ -113,7 +113,7 @@ Page({
     logLines.push('')
     logLines.push('结果: 有效 ' + parsedItems.length + ' 件 | 金额≤50过滤 ' + filteredCount + ' 件 | 无金额跳过 ' + badPriceCount + ' 件')
 
-    this.setData({ parsedItems, selectedIds: [], parseLog: logLines.join('\n') })
+    this.setData({ parsedItems, parseLog: logLines.join('\n') })
 
     if (parsedItems.length === 0) {
       wx.showToast({ title: '没有符合条件物品（需金额>50元）', icon: 'none' })
@@ -123,45 +123,37 @@ Page({
   },
 
   toggleSelect(e) {
-    const id = e.currentTarget.dataset.id
-    let selectedIds = this.data.selectedIds
-    const idx = selectedIds.indexOf(id)
-    if (idx > -1) {
-      selectedIds.splice(idx, 1)
-    } else {
-      selectedIds.push(id)
-    }
-    this.setData({ selectedIds })
+    const idx = e.currentTarget.dataset.idx
+    const key = 'parsedItems[' + idx + '].selected'
+    this.setData({ [key]: !this.data.parsedItems[idx].selected })
   },
 
   toggleAll() {
-    if (this.data.selectedIds.length === this.data.parsedItems.length) {
-      this.setData({ selectedIds: [] })
-    } else {
-      this.setData({ selectedIds: this.data.parsedItems.map((_, i) => i) })
-    }
+    const allSelected = this.data.parsedItems.every(i => i.selected)
+    const updates = {}
+    this.data.parsedItems.forEach((_, i) => {
+      updates['parsedItems[' + i + '].selected'] = !allSelected
+    })
+    this.setData(updates)
   },
 
   importSelected() {
-    if (this.data.selectedIds.length === 0) {
+    const selected = this.data.parsedItems.filter(i => i.selected)
+    if (selected.length === 0) {
       wx.showToast({ title: '请先选择物品', icon: 'none' })
       return
     }
 
-    let count = 0
-    for (const idx of this.data.selectedIds) {
-      const item = this.data.parsedItems[idx]
+    for (const item of selected) {
       storage.addItem(item)
-      count++
     }
 
     this.setData({
-      importResult: count + ' 件物品已导入',
+      importResult: selected.length + ' 件物品已导入',
       parsedItems: [],
-      selectedIds: [],
       parseLog: ''
     })
-    wx.showToast({ title: '成功导入 ' + count + ' 件物品', icon: 'success' })
+    wx.showToast({ title: '成功导入 ' + selected.length + ' 件物品', icon: 'success' })
   },
 
   chooseFile() {

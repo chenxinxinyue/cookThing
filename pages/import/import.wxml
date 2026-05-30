@@ -34,22 +34,20 @@
   <view class="section" wx:if="{{parsedItems.length > 0}}">
     <view class="section-header">
       <text class="section-title">解析结果（{{parsedItems.length}} 件）</text>
-      <text class="section-action" bindtap="toggleAll">
-        {{selectedIds.length === parsedItems.length ? '取消全选' : '全选'}}
-      </text>
+      <text class="section-action" bindtap="toggleAll">全选/取消</text>
     </view>
 
     <view class="import-list">
       <view
-        class="import-item {{selectedIds.indexOf(index) > -1 ? 'selected' : ''}}"
+        class="import-item {{item.selected ? 'selected' : ''}}"
         wx:for="{{parsedItems}}"
         wx:key="index"
-        data-id="{{index}}"
+        data-idx="{{index}}"
         bindtap="toggleSelect"
       >
         <view class="import-checkbox">
-          <view class="checkbox {{selectedIds.indexOf(index) > -1 ? 'checked' : ''}}">
-            <text wx:if="{{selectedIds.indexOf(index) > -1}}">✓</text>
+          <view class="checkbox {{item.selected ? 'checked' : ''}}">
+            <text wx:if="{{item.selected}}">✓</text>
           </view>
         </view>
         <view class="import-info">
@@ -59,8 +57,8 @@
       </view>
     </view>
 
-    <button class="btn-import" bindtap="importSelected" wx:if="{{selectedIds.length > 0}}">
-      导入已选（{{selectedIds.length}} 件）
+    <button class="btn-import" bindtap="importSelected" wx:if="{{parsedItems.length > 0}}">
+      导入已选
     </button>
   </view>
 
