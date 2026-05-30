@@ -1,0 +1,67 @@
+<view class="container">
+  <!-- Instructions -->
+  <view class="tip-card">
+    <text class="tip-title">使用说明</text>
+    <text class="tip-text">1. 从记账软件导出 Excel</text>
+    <text class="tip-text">2. 将 Excel 另存为 CSV 格式（UTF-8）</text>
+    <text class="tip-text">3. 粘贴 CSV 内容到下方，或发送文件到微信后选择</text>
+    <text class="tip-hint">程序会自动识别"一级分类""金额""备注"列</text>
+  </view>
+
+  <!-- CSV Input -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">粘贴 CSV 内容</text>
+      <text class="section-action" bindtap="chooseFile">或选择文件</text>
+    </view>
+    <textarea
+      class="csv-input"
+      placeholder="一级分类,金额,备注&#10;服装,500,牛仔裤&#10;餐饮,30,外卖午餐"
+      value="{{csvText}}"
+      bindinput="onCSVInput"
+      auto-height
+      maxlength="-1"
+    />
+    <button class="btn-parse" bindtap="onParse">解析内容</button>
+  </view>
+
+  <!-- Parsed Items -->
+  <view class="section" wx:if="{{parsedItems.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">解析结果（{{parsedItems.length}} 件）</text>
+      <text class="section-action" bindtap="toggleAll">
+        {{selectedIds.length === parsedItems.length ? '取消全选' : '全选'}}
+      </text>
+    </view>
+
+    <view class="import-list">
+      <view
+        class="import-item {{selectedIds.indexOf(index) > -1 ? 'selected' : ''}}"
+        wx:for="{{parsedItems}}"
+        wx:key="index"
+        data-id="{{index}}"
+        bindtap="toggleSelect"
+      >
+        <view class="import-checkbox">
+          <view class="checkbox {{selectedIds.indexOf(index) > -1 ? 'checked' : ''}}">
+            <text wx:if="{{selectedIds.indexOf(index) > -1}}">✓</text>
+          </view>
+        </view>
+        <view class="import-info">
+          <text class="import-name">{{item.name || '未命名'}}</text>
+          <text class="import-meta">¥{{item.price}} {{item.note ? '· ' + item.note : ''}}</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="btn-import" bindtap="importSelected" wx:if="{{selectedIds.length > 0}}">
+      导入已选（{{selectedIds.length}} 件）
+    </button>
+  </view>
+
+  <!-- Empty hint -->
+  <view class="empty-hint" wx:if="{{parsedItems.length === 0}}">
+    <text>支持 CSV 格式，首行为标题行</text>
+    <text>程序自动匹配"金额"列，按价格过滤有效物品</text>
+  </view>
+</view>

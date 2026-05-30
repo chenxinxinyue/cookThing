@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/import/import"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#f5f0eb",
+    "navigationBarTitleText": "每日成本",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f9f6f2"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#8b7355",
+    "backgroundColor": "#f5f0eb",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "物品列表"
+      },
+      {
+        "pagePath": "pages/import/import",
+        "text": "导入"
+      }
+    ]
+  }
+}

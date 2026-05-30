@@ -1,0 +1,416 @@
+.container {
+  padding: 24rpx;
+  padding-bottom: 160rpx;
+}
+
+/* Summary Card */
+.summary-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx 16rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+  margin-bottom: 20rpx;
+}
+
+.summary-item {
+  flex: 1;
+  text-align: center;
+}
+
+.summary-value {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #8b7355;
+}
+
+.summary-label {
+  display: block;
+  font-size: 22rpx;
+  color: #aaa;
+  margin-top: 4rpx;
+}
+
+.summary-divider {
+  width: 2rpx;
+  height: 50rpx;
+  background: #e8e0d5;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 14rpx 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 26rpx;
+}
+
+.search-clear {
+  font-size: 28rpx;
+  color: #ccc;
+  padding: 4rpx 10rpx;
+}
+
+.sort-btn {
+  width: 72rpx;
+  height: 72rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.sort-icon {
+  font-size: 32rpx;
+  color: #8b7355;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.filter-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  background: #fff;
+  color: #999;
+  transition: all 0.2s;
+}
+
+.filter-tab.active {
+  background: #d4c5b2;
+  color: #fff;
+}
+
+/* Item Cards */
+.item-card {
+  background: #fff;
+  border-radius: 14rpx;
+  padding: 24rpx;
+  margin-bottom: 14rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.item-card.expired {
+  opacity: 0.5;
+  background: #f5f5f5;
+}
+
+.item-main {
+  flex: 1;
+  overflow: hidden;
+}
+
+.item-category {
+  display: inline-block;
+  font-size: 22rpx;
+  color: #8b7355;
+  background: #f5f0eb;
+  padding: 4rpx 14rpx;
+  border-radius: 6rpx;
+  margin-bottom: 8rpx;
+}
+
+.item-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #4a4a4a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-note {
+  display: block;
+  font-size: 24rpx;
+  color: #bbb;
+  margin-top: 4rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-right {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 20rpx;
+}
+
+.item-per-day {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #8b7355;
+  display: block;
+}
+
+.item-meta {
+  font-size: 24rpx;
+  color: #bbb;
+  display: block;
+  margin-top: 4rpx;
+}
+
+.item-price {
+  font-size: 28rpx;
+  color: #999;
+  display: block;
+}
+
+.item-status {
+  font-size: 24rpx;
+  color: #ccc;
+  margin-top: 4rpx;
+}
+
+/* Empty */
+.empty {
+  text-align: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon {
+  display: block;
+  font-size: 80rpx;
+  margin-bottom: 18rpx;
+}
+
+.empty-text {
+  color: #ccc;
+  font-size: 28rpx;
+}
+
+/* FAB */
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 80rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #c9a87c;
+  color: #fff;
+  font-size: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 20rpx rgba(139, 115, 85, 0.3);
+  z-index: 100;
+}
+
+/* Modal */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 200;
+}
+
+.modal {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 28rpx 28rpx 0 0;
+  z-index: 201;
+  transition: bottom 0.3s ease;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal.show {
+  bottom: 0;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f0ebe0;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.modal-close {
+  font-size: 36rpx;
+  color: #ccc;
+  padding: 8rpx;
+}
+
+.modal-body {
+  padding: 32rpx;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 24rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 26rpx;
+  color: #888;
+  margin-bottom: 10rpx;
+}
+
+.form-input {
+  border: 2rpx solid #e8e0d5;
+  border-radius: 10rpx;
+  padding: 18rpx 20rpx;
+  font-size: 28rpx;
+  background: #fafaf8;
+}
+
+.form-picker {
+  border: 2rpx solid #e8e0d5;
+  border-radius: 10rpx;
+  padding: 18rpx 20rpx;
+  font-size: 28rpx;
+  background: #fafaf8;
+  color: #4a4a4a;
+}
+
+.btn-submit {
+  background: #c9a87c;
+  color: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  font-size: 30rpx;
+  margin-top: 16rpx;
+}
+
+/* Detail */
+.detail-name {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #4a4a4a;
+  margin-bottom: 28rpx;
+  text-align: center;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #f5f0eb;
+}
+
+.detail-row.highlight {
+  background: #faf7f2;
+  border-radius: 10rpx;
+  padding: 18rpx 16rpx;
+  border-bottom: none;
+  margin-bottom: 6rpx;
+}
+
+.detail-label {
+  color: #999;
+  font-size: 28rpx;
+}
+
+.detail-value {
+  color: #4a4a4a;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.btn-edit {
+  background: #faf7f2;
+  color: #8b7355;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 18rpx;
+  margin-top: 28rpx;
+}
+
+.detail-actions {
+  margin-top: 16rpx;
+  display: flex;
+  gap: 16rpx;
+}
+
+.btn-expired {
+  flex: 1;
+  background: #f5f0eb;
+  color: #8b7355;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  padding: 18rpx;
+}
+
+.btn-delete {
+  flex: 1;
+  background: #fff;
+  color: #d4a5a5;
+  border: 2rpx solid #f0d0d0;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  padding: 18rpx;
+}
+
+/* Edit Actions */
+.edit-actions {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
+.btn-cancel {
+  flex: 1;
+  background: #f5f5f5;
+  color: #999;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 18rpx;
+}
+
+.btn-save {
+  flex: 1;
+  background: #c9a87c;
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  padding: 18rpx;
+}

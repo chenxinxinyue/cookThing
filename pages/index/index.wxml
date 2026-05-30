@@ -1,0 +1,213 @@
+<view class="container">
+  <!-- Summary Card -->
+  <view class="summary-card">
+    <view class="summary-item">
+      <text class="summary-value">{{totalDailyCost}}</text>
+      <text class="summary-label">每日总成本</text>
+    </view>
+    <view class="summary-divider"></view>
+    <view class="summary-item">
+      <text class="summary-value">{{totalPrice}}</text>
+      <text class="summary-label">物品总原价</text>
+    </view>
+    <view class="summary-divider"></view>
+    <view class="summary-item">
+      <text class="summary-value">{{activeCount}}</text>
+      <text class="summary-label">生效中</text>
+    </view>
+  </view>
+
+  <!-- Search + Sort -->
+  <view class="toolbar">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索物品名称、分类..."
+        value="{{searchTerm}}"
+        bindinput="onSearchInput"
+      />
+      <text class="search-clear" wx:if="{{searchTerm}}" bindtap="clearSearch">✕</text>
+    </view>
+    <view class="sort-btn" bindtap="toggleSort">
+      <text class="sort-icon">⇅</text>
+    </view>
+  </view>
+
+  <!-- Filter Tabs -->
+  <view class="filter-tabs">
+    <view
+      class="filter-tab {{filter === 'active' ? 'active' : ''}}"
+      data-filter="active"
+      bindtap="setFilter"
+    >生效中</view>
+    <view
+      class="filter-tab {{filter === 'expired' ? 'active' : ''}}"
+      data-filter="expired"
+      bindtap="setFilter"
+    >已失效</view>
+  </view>
+
+  <!-- Item List -->
+  <view class="list" wx:if="{{filter === 'active'}}">
+    <block wx:if="{{filteredActive.length > 0}}">
+      <view
+        class="item-card"
+        wx:for="{{filteredActive}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="openDetail"
+        bindlongpress="onLongPress"
+      >
+        <view class="item-main">
+          <view class="item-category" wx:if="{{item.category}}">{{item.category}}</view>
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-note" wx:if="{{item.note}}">{{item.note}}</text>
+        </view>
+        <view class="item-right">
+          <text class="item-per-day">¥{{item.dailyCost}}/天</text>
+          <text class="item-meta">{{item.days}}天 · ¥{{item.price}}</text>
+        </view>
+      </view>
+    </block>
+    <view class="empty" wx:else>
+      <text class="empty-icon">🔍</text>
+      <text class="empty-text">{{searchTerm ? '没有匹配的物品' : '还没有物品，点击右下角添加'}}</text>
+    </view>
+  </view>
+
+  <view class="list" wx:if="{{filter === 'expired'}}">
+    <block wx:if="{{filteredExpired.length > 0}}">
+      <view
+        class="item-card expired"
+        wx:for="{{filteredExpired}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="openDetail"
+        bindlongpress="onLongPress"
+      >
+        <view class="item-main">
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-note" wx:if="{{item.note}}">{{item.note}}</text>
+        </view>
+        <view class="item-right">
+          <text class="item-price">¥{{item.price}}</text>
+          <text class="item-status">已失效</text>
+        </view>
+      </view>
+    </block>
+    <view class="empty" wx:else>
+      <text class="empty-text">{{searchTerm ? '没有匹配的物品' : '没有已失效物品'}}</text>
+    </view>
+  </view>
+
+  <!-- Floating Add Button -->
+  <view class="fab" bindtap="openAddModal">+</view>
+
+  <!-- Add Modal -->
+  <view class="modal-mask" wx:if="{{showAddModal}}" bindtap="closeAddModal"></view>
+  <view class="modal {{showAddModal ? 'show' : ''}}">
+    <view class="modal-header">
+      <text class="modal-title">添加物品</text>
+      <text class="modal-close" bindtap="closeAddModal">✕</text>
+    </view>
+    <view class="modal-body">
+      <view class="form-group">
+        <text class="form-label">名称 *</text>
+        <input class="form-input" placeholder="例如：牛仔裤" value="{{form.name}}" data-field="name" bindinput="onFormInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">价格（元）*</text>
+        <input class="form-input" type="digit" placeholder="例如：500" value="{{form.price}}" data-field="price" bindinput="onFormInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">分类</text>
+        <input class="form-input" placeholder="例如：服装" value="{{form.category}}" data-field="category" bindinput="onFormInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">备注</text>
+        <input class="form-input" placeholder="备注信息" value="{{form.note}}" data-field="note" bindinput="onFormInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">添加日期</text>
+        <picker mode="date" value="{{form.dateAdded}}" bindchange="onDateChange">
+          <view class="form-picker">{{form.dateAdded}}</view>
+        </picker>
+      </view>
+      <button class="btn-submit" bindtap="submitAdd">确认添加</button>
+    </view>
+  </view>
+
+  <!-- Detail Modal (view mode) -->
+  <view class="modal-mask" wx:if="{{showDetailModal}}" bindtap="closeDetail"></view>
+  <view class="modal {{showDetailModal ? 'show' : ''}}">
+    <view class="modal-header">
+      <text class="modal-title">物品详情</text>
+      <text class="modal-close" bindtap="closeDetail">✕</text>
+    </view>
+    <view class="modal-body" wx:if="{{detailItem && !isEditing}}">
+      <view class="detail-name">{{detailItem.name}}</view>
+      <view class="detail-row">
+        <text class="detail-label">价格</text>
+        <text class="detail-value">¥{{detailItem.price}}</text>
+      </view>
+      <view class="detail-row">
+        <text class="detail-label">添加日期</text>
+        <text class="detail-value">{{detailItem.dateAdded}}</text>
+      </view>
+      <view class="detail-row">
+        <text class="detail-label">已添加</text>
+        <text class="detail-value">{{detailItem.days}} 天</text>
+      </view>
+      <view class="detail-row highlight">
+        <text class="detail-label">每日成本</text>
+        <text class="detail-value">¥{{detailItem.dailyCost}}</text>
+      </view>
+      <view class="detail-row" wx:if="{{detailItem.category}}">
+        <text class="detail-label">分类</text>
+        <text class="detail-value">{{detailItem.category}}</text>
+      </view>
+      <view class="detail-row" wx:if="{{detailItem.note}}">
+        <text class="detail-label">备注</text>
+        <text class="detail-value">{{detailItem.note}}</text>
+      </view>
+      <button class="btn-edit" bindtap="startEdit">编辑物品</button>
+      <view class="detail-actions">
+        <button class="btn-expired" data-id="{{detailItem.id}}" bindtap="toggleStatus">
+          {{detailItem.status === 'active' ? '标记为已失效' : '恢复为生效中'}}
+        </button>
+        <button class="btn-delete" data-id="{{detailItem.id}}" bindtap="deleteItem">删除</button>
+      </view>
+    </view>
+
+    <!-- Detail Modal (edit mode) -->
+    <view class="modal-body" wx:if="{{detailItem && isEditing}}">
+      <view class="form-group">
+        <text class="form-label">名称 *</text>
+        <input class="form-input" value="{{editForm.name}}" data-field="name" bindinput="onEditInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">价格（元）*</text>
+        <input class="form-input" type="digit" value="{{editForm.price}}" data-field="price" bindinput="onEditInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">分类</text>
+        <input class="form-input" value="{{editForm.category}}" data-field="category" bindinput="onEditInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">备注</text>
+        <input class="form-input" value="{{editForm.note}}" data-field="note" bindinput="onEditInput" />
+      </view>
+      <view class="form-group">
+        <text class="form-label">添加日期</text>
+        <picker mode="date" value="{{editForm.dateAdded}}" bindchange="onEditDateChange">
+          <view class="form-picker">{{editForm.dateAdded}}</view>
+        </picker>
+      </view>
+      <view class="edit-actions">
+        <button class="btn-cancel" bindtap="cancelEdit">取消</button>
+        <button class="btn-save" bindtap="saveEdit">保存修改</button>
+      </view>
+    </view>
+  </view>
+</view>

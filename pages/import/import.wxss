@@ -1,0 +1,163 @@
+.container {
+  padding: 24rpx;
+  padding-bottom: 80rpx;
+}
+
+/* Tip */
+.tip-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.tip-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #4a4a4a;
+  margin-bottom: 14rpx;
+}
+
+.tip-text {
+  display: block;
+  font-size: 26rpx;
+  color: #888;
+  line-height: 1.8;
+}
+
+.tip-hint {
+  display: block;
+  font-size: 24rpx;
+  color: #c9a87c;
+  margin-top: 10rpx;
+  padding: 10rpx 16rpx;
+  background: #faf7f2;
+  border-radius: 8rpx;
+}
+
+/* Section */
+.section {
+  margin-bottom: 24rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #4a4a4a;
+}
+
+.section-action {
+  font-size: 26rpx;
+  color: #c9a87c;
+}
+
+/* CSV Input */
+.csv-input {
+  background: #fff;
+  border-radius: 14rpx;
+  padding: 24rpx;
+  font-size: 26rpx;
+  min-height: 200rpx;
+  width: 100%;
+  box-sizing: border-box;
+  border: 2rpx solid #e8e0d5;
+  color: #4a4a4a;
+}
+
+.btn-parse {
+  background: #c9a87c;
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  margin-top: 16rpx;
+}
+
+/* Import List */
+.import-list {
+  background: #fff;
+  border-radius: 14rpx;
+  overflow: hidden;
+}
+
+.import-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f5f0eb;
+}
+
+.import-item:last-child {
+  border-bottom: none;
+}
+
+.import-item.selected {
+  background: #faf7f2;
+}
+
+.import-checkbox {
+  margin-right: 20rpx;
+}
+
+.checkbox {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 3rpx solid #d4c5b2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+.checkbox.checked {
+  background: #c9a87c;
+  border-color: #c9a87c;
+}
+
+.import-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.import-name {
+  display: block;
+  font-size: 30rpx;
+  color: #4a4a4a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.import-meta {
+  display: block;
+  font-size: 24rpx;
+  color: #aaa;
+  margin-top: 4rpx;
+}
+
+.btn-import {
+  background: #8b7355;
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  margin-top: 16rpx;
+}
+
+/* Empty */
+.empty-hint {
+  text-align: center;
+  padding: 60rpx 0;
+  color: #ccc;
+  font-size: 26rpx;
+  line-height: 2;
+}
