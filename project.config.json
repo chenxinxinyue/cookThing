@@ -1,5 +1,6 @@
 {
   "description": "每日成本计算器",
+  "appid": "wx6daf946307930b4c",
   "packOptions": {
     "ignore": [],
     "include": []
