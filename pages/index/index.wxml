@@ -67,6 +67,7 @@
         <view class="item-right">
           <text class="item-per-day">¥{{item.dailyCost}}/天</text>
           <text class="item-meta">{{item.days}}天 · ¥{{item.price}}</text>
+          <text class="item-date">{{item.dateAdded}}</text>
         </view>
       </view>
     </block>
