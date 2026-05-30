@@ -13,6 +13,9 @@ Page({
     detailItem: null,
     isEditing: false,
     editForm: {},
+    themeIndex: 0,
+    themeName: '暖棕',
+    themeStyle: '',
     form: {
       name: '',
       price: '',
@@ -29,7 +32,29 @@ Page({
   },
 
   onShow() {
+    this.applyTheme()
     this.loadItems()
+  },
+
+  applyTheme() {
+    const theme = storage.getTheme()
+    const idx = storage.getThemeIndex()
+    const style = [
+      '--primary:' + theme.primary,
+      '--accent:' + theme.accent,
+      '--bg:' + theme.bg,
+      '--bg-light:' + theme.bgLight,
+      '--mid:' + theme.mid,
+      '--tag-bg:' + theme.tagBg,
+      '--tag-color:' + theme.tagColor
+    ].join(';')
+    this.setData({ themeIndex: idx, themeName: theme.name, themeStyle: style })
+  },
+
+  switchTheme() {
+    const idx = (storage.getThemeIndex() + 1) % storage.THEMES.length
+    storage.setThemeIndex(idx)
+    this.applyTheme()
   },
 
   loadItems() {

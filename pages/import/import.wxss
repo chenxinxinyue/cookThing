@@ -30,10 +30,10 @@
 .tip-hint {
   display: block;
   font-size: 24rpx;
-  color: #c9a87c;
+  color: var(--accent, #c9a87c);
   margin-top: 10rpx;
   padding: 10rpx 16rpx;
-  background: #faf7f2;
+  background: var(--bg-light, #faf7f2);
   border-radius: 8rpx;
 }
 
@@ -57,7 +57,7 @@
 
 .section-action {
   font-size: 26rpx;
-  color: #c9a87c;
+  color: var(--accent, #c9a87c);
 }
 
 /* CSV Input */
@@ -74,11 +74,27 @@
 }
 
 .btn-parse {
-  background: #c9a87c;
+  background: var(--accent, #c9a87c);
   color: #fff;
   border-radius: 12rpx;
   font-size: 28rpx;
   margin-top: 16rpx;
+}
+
+/* Parse Log */
+.parse-log {
+  background: var(--bg-light, #faf7f2);
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin-top: 16rpx;
+}
+
+.log-text {
+  font-size: 24rpx;
+  color: var(--accent, #c9a87c);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-family: monospace;
 }
 
 /* Import List */
@@ -100,7 +116,7 @@
 }
 
 .import-item.selected {
-  background: #faf7f2;
+  background: var(--bg-light, #faf7f2);
 }
 
 .import-checkbox {
@@ -111,7 +127,7 @@
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
-  border: 3rpx solid #d4c5b2;
+  border: 3rpx solid var(--mid, #d4c5b2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,8 +136,8 @@
 }
 
 .checkbox.checked {
-  background: #c9a87c;
-  border-color: #c9a87c;
+  background: var(--accent, #c9a87c);
+  border-color: var(--accent, #c9a87c);
 }
 
 .import-info {
@@ -146,27 +162,11 @@
 }
 
 .btn-import {
-  background: #8b7355;
+  background: var(--primary, #8b7355);
   color: #fff;
   border-radius: 12rpx;
   font-size: 28rpx;
   margin-top: 16rpx;
-}
-
-/* Parse Log */
-.parse-log {
-  background: #faf7f2;
-  border-radius: 10rpx;
-  padding: 20rpx;
-  margin-top: 16rpx;
-}
-
-.log-text {
-  font-size: 24rpx;
-  color: #8b7355;
-  line-height: 1.8;
-  white-space: pre-wrap;
-  font-family: monospace;
 }
 
 /* Empty */

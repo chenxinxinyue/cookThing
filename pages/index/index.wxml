@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="{{themeStyle}}">
   <!-- Summary Card -->
   <view class="summary-card">
     <view class="summary-item">
@@ -31,6 +31,9 @@
     </view>
     <view class="sort-btn" bindtap="toggleSort">
       <text class="sort-icon">⇅</text>
+    </view>
+    <view class="theme-btn" bindtap="switchTheme">
+      <text class="theme-dot">🎨</text>
     </view>
   </view>
 

@@ -49,6 +49,26 @@ function markActive(id) {
   return updateItem(id, { status: 'active' })
 }
 
+const THEMES = [
+  { name: '暖棕', primary: '#8b7355', accent: '#c9a87c', bg: '#f5f0eb', bgLight: '#faf7f2', mid: '#d4c5b2', tagBg: '#f5f0eb', tagColor: '#8b7355' },
+  { name: '雾蓝', primary: '#6b8299', accent: '#8fa4b8', bg: '#e8eef3', bgLight: '#f0f4f8', mid: '#b0c4d4', tagBg: '#e8eef3', tagColor: '#6b8299' },
+  { name: '灰绿', primary: '#7a8b7a', accent: '#9db09d', bg: '#e8efe5', bgLight: '#f0f4ee', mid: '#b0c4b0', tagBg: '#e8efe5', tagColor: '#7a8b7a' },
+  { name: '藕粉', primary: '#9b7b8b', accent: '#c4a8b4', bg: '#f2e8ec', bgLight: '#f8f2f4', mid: '#d4bcc4', tagBg: '#f2e8ec', tagColor: '#9b7b8b' }
+]
+
+function getThemeIndex() {
+  const idx = wx.getStorageSync('themeIndex')
+  return idx !== undefined && idx !== '' ? idx : 0
+}
+
+function setThemeIndex(idx) {
+  wx.setStorageSync('themeIndex', idx)
+}
+
+function getTheme() {
+  return THEMES[getThemeIndex()]
+}
+
 function todayStr() {
   const d = new Date()
   return d.getFullYear() + '-' +
@@ -77,5 +97,9 @@ module.exports = {
   markActive,
   todayStr,
   daysBetween,
-  calcDailyCost
+  calcDailyCost,
+  THEMES,
+  getThemeIndex,
+  setThemeIndex,
+  getTheme
 }

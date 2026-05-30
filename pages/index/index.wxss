@@ -23,7 +23,7 @@
   display: block;
   font-size: 40rpx;
   font-weight: 700;
-  color: #8b7355;
+  color: var(--primary, #8b7355);
 }
 
 .summary-label {
@@ -73,7 +73,7 @@
   padding: 4rpx 10rpx;
 }
 
-.sort-btn {
+.sort-btn, .theme-btn {
   width: 72rpx;
   height: 72rpx;
   background: #fff;
@@ -84,9 +84,8 @@
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
 }
 
-.sort-icon {
+.sort-icon, .theme-dot {
   font-size: 32rpx;
-  color: #8b7355;
 }
 
 /* Filter Tabs */
@@ -108,7 +107,7 @@
 }
 
 .filter-tab.active {
-  background: #d4c5b2;
+  background: var(--mid, #d4c5b2);
   color: #fff;
 }
 
@@ -137,8 +136,8 @@
 .item-category {
   display: inline-block;
   font-size: 22rpx;
-  color: #8b7355;
-  background: #f5f0eb;
+  color: var(--tag-color, #8b7355);
+  background: var(--tag-bg, #f5f0eb);
   padding: 4rpx 14rpx;
   border-radius: 6rpx;
   margin-bottom: 8rpx;
@@ -173,7 +172,7 @@
 .item-per-day {
   font-size: 32rpx;
   font-weight: 600;
-  color: #8b7355;
+  color: var(--primary, #8b7355);
   display: block;
 }
 
@@ -228,13 +227,13 @@
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
-  background: #c9a87c;
+  background: var(--accent, #c9a87c);
   color: #fff;
   font-size: 48rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6rpx 20rpx rgba(139, 115, 85, 0.3);
+  box-shadow: 0 6rpx 20rpx rgba(139, 115, 85, 0.25);
   z-index: 100;
 }
 
@@ -319,7 +318,7 @@
 }
 
 .btn-submit {
-  background: #c9a87c;
+  background: var(--accent, #c9a87c);
   color: #fff;
   border-radius: 12rpx;
   padding: 20rpx;
@@ -345,7 +344,7 @@
 }
 
 .detail-row.highlight {
-  background: #faf7f2;
+  background: var(--bg-light, #faf7f2);
   border-radius: 10rpx;
   padding: 18rpx 16rpx;
   border-bottom: none;
@@ -364,8 +363,8 @@
 }
 
 .btn-edit {
-  background: #faf7f2;
-  color: #8b7355;
+  background: var(--bg-light, #faf7f2);
+  color: var(--primary, #8b7355);
   border-radius: 12rpx;
   font-size: 28rpx;
   padding: 18rpx;
@@ -380,8 +379,8 @@
 
 .btn-expired {
   flex: 1;
-  background: #f5f0eb;
-  color: #8b7355;
+  background: var(--bg, #f5f0eb);
+  color: var(--primary, #8b7355);
   border-radius: 12rpx;
   font-size: 26rpx;
   padding: 18rpx;
@@ -415,7 +414,7 @@
 
 .btn-save {
   flex: 1;
-  background: #c9a87c;
+  background: var(--accent, #c9a87c);
   color: #fff;
   border-radius: 12rpx;
   font-size: 28rpx;

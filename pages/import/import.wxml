@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="{{themeStyle}}">
   <!-- Instructions -->
   <view class="tip-card">
     <text class="tip-title">使用说明</text>

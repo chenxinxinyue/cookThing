@@ -5,7 +5,30 @@ Page({
     csvText: '',
     parsedItems: [],
     importResult: '',
-    parseLog: ''
+    parseLog: '',
+    themeStyle: ''
+  },
+
+  onLoad() {
+    this.applyTheme()
+  },
+
+  onShow() {
+    this.applyTheme()
+  },
+
+  applyTheme() {
+    const theme = storage.getTheme()
+    const style = [
+      '--primary:' + theme.primary,
+      '--accent:' + theme.accent,
+      '--bg:' + theme.bg,
+      '--bg-light:' + theme.bgLight,
+      '--mid:' + theme.mid,
+      '--tag-bg:' + theme.tagBg,
+      '--tag-color:' + theme.tagColor
+    ].join(';')
+    this.setData({ themeStyle: style })
   },
 
   onCSVInput(e) {
