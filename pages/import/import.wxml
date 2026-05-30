@@ -23,6 +23,11 @@
       maxlength="-1"
     />
     <button class="btn-parse" bindtap="onParse">解析内容</button>
+
+    <!-- Parse Log -->
+    <view class="parse-log" wx:if="{{parseLog}}">
+      <text class="log-text">{{parseLog}}</text>
+    </view>
   </view>
 
   <!-- Parsed Items -->

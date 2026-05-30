@@ -153,6 +153,22 @@
   margin-top: 16rpx;
 }
 
+/* Parse Log */
+.parse-log {
+  background: #faf7f2;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin-top: 16rpx;
+}
+
+.log-text {
+  font-size: 24rpx;
+  color: #8b7355;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
 /* Empty */
 .empty-hint {
   text-align: center;
